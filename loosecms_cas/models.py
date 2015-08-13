@@ -16,8 +16,6 @@ class CasManager(Plugin):
 
     image = models.ImageField(_('image'), upload_to='cas')
 
-    published = models.BooleanField(_('published'), default=True)
-
     def __unicode__(self):
         return "%s (%s)" %(self.title, self.type)
 
