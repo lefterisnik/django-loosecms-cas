@@ -1,28 +1,41 @@
 {% load i18n cms_tags %}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{{ title }}</h3>
+        <h3 class="panel-title">{{ casmanager.title }}</h3>
     </div>
     <div class="panel-body">
         {% if user.is_authenticated %}
+            {% if request.session.attributes.cn %}
             <div class="row">
                 <div class="col-lg-3">
-                    <h4>{% trans 'User'%}:</h4>
+                    <p>{% trans 'User'%}:</p>
                 </div>
                 <div class="col-lg-9">
-                    <h4>{{ request.session.attributes.cn }}</h4>
+                    <p>{{ request.session.attributes.cn }}</p>
                 </div>
             </div>
+            {% elif user.first_name and user.last_name %}
+            <div class="row">
+                <div class="col-lg-3">
+                    <p>{% trans 'User'%}:</p>
+                </div>
+                <div class="col-lg-9">
+                    <p>{{ user.first_name }} {{ user.last_name }}</p>
+                </div>
+            </div>
+            {% endif %}
             <div class="row">
                 <div class="col-lg-12">
                     <div class="media">
+                        {% if casmanager.image %}
                         <div class="media-left">
                             <a href="#">
                                 <img class="media-object" src="{{ image.url }}" alt="{% trans 'Authentication' %}" width="32">
                             </a>
                         </div>
+                        {% endif %}
                         <div class="media-body">
-                            <h4 class="media-heading">{% trans 'Welcome, '%} {{ user }}</h4>
+                            <p class="media-heading">{% trans 'Welcome, '%} {{ user }}</p>
                             <a class="btn btn-primary" href="{% url 'cas_logout' %}" role="button">{% trans "Sign out" %}</a>
                         </div>
                     </div>
@@ -31,21 +44,21 @@
         {% else %}
             <div class="row">
                 <div class="col-lg-12">
-                    <p>{{ description|safe }}</p>
+                    <p>{{ casmanager.description|safe }}</p>
                     <div class="media">
+                        {% if casmanager.image %}
                         <div class="media-left">
                             <a href="#">
                                 <img class="media-object" src="{{ image.url }}" alt="{% trans 'Authentication' %}" width="32">
                             </a>
                         </div>
+                        {% endif %}
                         <div class="media-body">
                             <a class="btn btn-primary" href="{% url 'cas_login' %}" role="button">{% trans "Sign in" %}</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         {% endif %}
     </div>
 </div>

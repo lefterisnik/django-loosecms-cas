@@ -29,14 +29,13 @@ class CasPlugin(PluginModelAdmin):
     plugin = True
     extra_initial_help = None
     cas_user_authenticated.connect(callback)
+    fields = ('type', 'placeholder', 'title', 'description', 'image', 'published')
 
     def render(self, context, manager):
         '''
         Get all link and categories
         '''
-        context['title'] = manager.title
-        context['image'] = manager.image
-        context['description'] = manager.description
+        context['casmanager'] = manager
         t = loader.get_template(self.template)
         return t.render(context)
 

@@ -10,11 +10,11 @@ class CasManager(Plugin):
                              help_text=_('Give some title.'))
     description = RichTextField(_('description'))
 
-    ctime = models.DateTimeField(editable=False, auto_now_add=True)
+    image = models.ImageField(_('image'), upload_to='cas', blank=True)
+
+    ctime = models.DateTimeField(auto_now_add=True)
 
     utime = models.DateTimeField(auto_now=True)
-
-    image = models.ImageField(_('image'), upload_to='cas')
 
     def __unicode__(self):
         return "%s (%s)" %(self.title, self.type)
