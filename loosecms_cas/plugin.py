@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
-from django.template import loader
-from django.conf import settings
 
 from .models import *
 from .forms import *
@@ -31,13 +29,9 @@ class CasPlugin(PluginModelAdmin):
     cas_user_authenticated.connect(callback)
     fields = ('type', 'placeholder', 'title', 'description', 'image', 'published')
 
-    def render(self, context, manager):
-        '''
-        Get all link and categories
-        '''
+    def update_context(self, context, manager):
         context['casmanager'] = manager
-        t = loader.get_template(self.template)
-        return t.render(context)
+        return context
 
     def get_changeform_initial_data(self, request):
         initial = {}
