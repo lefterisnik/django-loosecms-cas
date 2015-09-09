@@ -31,8 +31,6 @@ setup(
     install_requires=[
         'Django>=1.8,<1.9',
         'django-cas-ng',
-        'django-ckeditor',
-        'pillow',
         'django-loose-cms',
     ],
 )

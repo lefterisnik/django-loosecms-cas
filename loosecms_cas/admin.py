@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from .models import CasManager
+from .models import Cas
 from .plugin import CasPlugin
 
-admin.site.register(CasManager, CasPlugin)
+admin.site.register(Cas, CasPlugin)
