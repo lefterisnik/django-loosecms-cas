@@ -19,8 +19,6 @@ def callback(sender, **kwargs):
 
 
 class CasPlugin(PluginModelAdmin):
-    change_form_template = None
-    delete_confirmation_template = None
     model = Cas
     name = _('CAS Login')
     template = "plugin/cas.html"
