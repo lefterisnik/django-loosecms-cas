@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('sites', '0006_auto_20150914_1106'),
+        ('sites', '0001_initial'),
         ('loosecms_cas', '0003_auto_20150914_1200'),
     ]
 
