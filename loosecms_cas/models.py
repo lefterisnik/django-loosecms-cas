@@ -13,10 +13,15 @@ from .signals import update_cas_settings
 class Cas(Plugin):
     default_type = 'CasPlugin'
 
-    title = models.CharField(_('title'), max_length=200,
+    title = models.CharField(_('title'), max_length=200, unique=True,
                              help_text=_('Give some title.'))
-    description = LoosecmsRichTextField(_('description'))
-
+    slug = models.SlugField('slug', unique=True,
+                            help_text=_('Give the slug.'))
+    header_title = models.CharField(_('header title'), max_length=150,
+                                    default=_('Cas login'),
+                                    help_text=_('Give the title of the panel.'))
+    description = LoosecmsRichTextField(_('description'),
+                                        help_text=_('Give the description of the panel.'))
     image = UploadFilePathField(_('image'), upload_to='cas', path='cas', blank=True)
 
     ctime = models.DateTimeField(auto_now_add=True)

@@ -25,6 +25,7 @@ class CasPlugin(PluginModelAdmin):
     plugin = True
     extra_initial_help = None
     cas_user_authenticated.connect(callback)
+    prepopulated_fields = {'slug': ('title',)}
 
     def update_context(self, context, manager):
         context['casmanager'] = manager
